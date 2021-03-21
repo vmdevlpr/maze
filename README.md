@@ -1,7 +1,7 @@
 # aMaze
 This is a maze game project.
 
-You can try it on http://www.andresd.ru/maze/draw.php
+You can try it on http://www.andresd.ru/maze/
 Code is compatible with PHP5 and later versions
 
 Maze generates a page with a maze.
