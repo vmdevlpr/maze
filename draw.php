@@ -91,13 +91,16 @@ foreach ($sourceLines as $line) {
 
 // parse array to maze params
 $maze_params = array(
-	'cell' => array('width'=>20,'height'=>20),
+	'height' => null,
+	'width' => null,
 	'start' => array('x'=>false,'y'=>false),
 	'fnish' => array('x'=>false,'y'=>false),
 );
 
 $emptyCells = array();
 $mazeCells = array();
+$maze_params['width'] = (count($maze)+1) / 2 - 1;
+$maze_params['height'] = (count($maze[0])+1) / 2 - 1;
 foreach ($maze as $curY=>$maze_line) {
 	foreach ($maze_line as $curX=>$maze_cell) {
 		switch ($maze_cell) {
@@ -280,10 +283,10 @@ foreach ($mazeCells as $curY=>$maze_line) {
 				<label for="xSize" class="form-label">Ширина</label>
 				<div class="row"> 
 					<div class="col-2">
-						<input type="text" name="x" id="xValue" class="w-100">
+						<input type="text" name="x" id="xValue" class="w-100" value="<?php echo $maze_params['width']; ?>">
 					</div>
 					<div class="col-10">
-						<input type="range" class="form-range" min="5" max="30" step="1" id="xSize" data-range-value="xValue">
+						<input type="range" class="form-range" min="5" max="30" step="1" id="xSize" value="<?php echo $maze_params['width']; ?>" data-range-value="xValue">
 					</div>
 				</div>
 			</DIV>
@@ -291,10 +294,10 @@ foreach ($mazeCells as $curY=>$maze_line) {
 				<label for="ySize" class="form-label">Высота</label>
 				<div class="row"> 
 					<div class="col-2">
-						<input type="text" name="y" id="yValue" class="w-100">
+						<input type="text" name="y" id="yValue" class="w-100" value="<?php echo $maze_params['height']; ?>">
 					</div>
 					<div class="col-10">
-						<input type="range" class="form-range" min="5" max="20" step="1" id="ySize" data-range-value="yValue">
+						<input type="range" class="form-range" min="5" max="20" step="1" id="ySize"  value="<?php echo $maze_params['height']; ?>" data-range-value="yValue">
 					</div>
 				</div>
 			</DIV>
