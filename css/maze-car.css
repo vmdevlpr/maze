@@ -37,6 +37,9 @@
 	overflow: hidden;
 	background-color: #000000;
 	mask: url('../img/player-car.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	mask-position: 50% 50%;
 	background-size: contain;
 	/*
 	*/
@@ -73,24 +76,36 @@
 /* itmes */
 .mcell.withItem.item1 {
 	background-color: #999999;
-	mask: url('../img/player-car.svg');
+	mask: url('../img/canister.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	mask-position: 50% 50%;
 }
 .leftmenu #item1 .icon {
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
 	background-color: #999999;
-	mask: url('../img/player-car.svg');
+	mask: url('../img/canister.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	mask-position: bottom center;
 }
 
 .mcell.withItem.item2 {
 	background-color: #FF0000;
-	mask: url('../img/player-car.svg');
+	mask: url('../img/canister.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	mask-position: 50% 50%;
 }
 .leftmenu #item2 .icon {
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
 	background-color: #FF0000;
-	mask: url('../img/player-car.svg');
+	mask: url('../img/canister.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	mask-position: bottom center;
 }
