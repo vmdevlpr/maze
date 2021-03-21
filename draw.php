@@ -262,10 +262,11 @@ foreach ($mazeCells as $curY=>$maze_line) {
 </head>
 <body>
 <div class="topmenu">
-	<a href="?rnd=1">Случайный</A>
-	<a href="#paramBox" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Параметры</A>
+	<!-- <a href="?rnd=1" class="btn btn-outline-primary btn-sm">Случайный</A> -->
+	<a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#paramBox">Параметры</A>
+	<a href="#helpBox" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#helpBox">Помощь</A>
 </div>
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="paramBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -312,6 +313,25 @@ foreach ($mazeCells as $curY=>$maze_line) {
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
         <button type="submit" form="mazeParamsForm" class="btn btn-primary">Сгенерировать</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="helpBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Лабиринт</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		<P>Для перемещения по лабиринту используйте стрелки на клавиатуре.</P>
+		<P>Собирая предметы в лабиринте вы можете использовать их для того, чтобы разрушать стены или проходить сквозь них.</P>
+		<P>Для использования собранного предмета, встаньте рядом со стеной, которую хотите разрушить или преодолеть, активируйте предмет в левом меню, двиньтесь в нужную сторону.</P>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
       </div>
     </div>
   </div>
