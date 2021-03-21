@@ -1,0 +1,68 @@
+.maze {
+	position: relative;
+}
+.maze .line {
+	clear: both;
+}
+.maze .line .cell {
+	display: block;
+	width: 1rem;
+	height: 1rem;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+.cell.wall {
+	background-color: #9CFF8E;
+	transition-duration: 0.3ms;
+	background-image: url('../img/tree.svg');
+	background-size: contain;
+}
+.cell.wall.border {
+	background-color: #999999;
+	background-color: #097900;
+	background-image: none;
+}
+.cell.finish {
+	/* background-color: #009900; */
+	background-image: url('../img/exit.svg');
+	background-size: contain;
+}
+.user {
+	position: absolute;
+	transition-duration: 0.5ms;
+	display: none;
+	width: 1rem;
+	height: 1rem;
+	overflow: hidden;
+	background-color: #000000;
+	mask: url('../img/player-car.svg');
+	background-size: contain;
+	/*
+	*/
+}
+
+/* user animation */
+.user.animBlinkRed {
+	animation-name: userBlinkingRed;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+.user.animBlinkGray {
+	animation-name: userBlinkingGray;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes userBlinkingRed {
+  0%   {background-color: #000000;}
+  50%  {background-color: #FF0000;}
+  100% {background-color: #000000;}
+}
+
+@keyframes userBlinkingGray {
+  0%   {background-color: #000000;}
+  50%  {background-color: #999999;}
+  100% {background-color: #000000;}
+}
