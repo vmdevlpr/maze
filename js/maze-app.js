@@ -55,7 +55,7 @@ $(document).ready(function() {
 		if (
 				( ($cell.data('isfree') >0) || (ignoreWalls==true) || (destroyWalls==true) ) 
 				&&
-				(!$cell.hasClass('mborder'))
+				( !$cell.hasClass('mborder') )
 			) {
 		
 			if (destroyWalls && $cell.hasClass('wall')) {
