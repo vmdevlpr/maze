@@ -1,4 +1,6 @@
 # aMaze
+[![Minimum PHP Version](https://img.shields.io/badge/php-%3E%3D%205.3-8892BF.svg)](https://php.net/)
+
 This is a maze game project.
 
 You can try it on http://www.andresd.ru/maze/
