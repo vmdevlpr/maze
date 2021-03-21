@@ -92,7 +92,7 @@ foreach ($maze as $curY=>$maze_line) {
 					'tag' => 'div',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'cell wall',
+						'class'=>'mcell wall',
 						'data-isfree'=>0,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -106,7 +106,7 @@ foreach ($maze as $curY=>$maze_line) {
 					'tag' => 'div',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'cell wall border',
+						'class'=>'mcell wall mborder',
 						'data-isfree'=>0,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -120,7 +120,7 @@ foreach ($maze as $curY=>$maze_line) {
 					'tag' => 'div',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'cell space finish',
+						'class'=>'mcell space finish',
 						'data-isfree'=>1,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -135,7 +135,7 @@ foreach ($maze as $curY=>$maze_line) {
 					'tag' => 'div',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'cell space',
+						'class'=>'mcell space',
 						'data-isfree'=>1,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -148,7 +148,7 @@ foreach ($maze as $curY=>$maze_line) {
 					'tag' => 'div',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'cell space',
+						'class'=>'mcell space',
 						'data-isfree'=>1,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -165,17 +165,17 @@ foreach ($maze as $curY=>$maze_line) {
 $playerItems = array(
 	array(
 		'title' => 'Серый',
-		'class' => 'itemGrayPlayer',
-		'icon' => 'img/player-car.svg',
-		'color' => '#999999',
+		// 'class' => 'itemGrayPlayer',
+		// 'icon' => 'img/player-car.svg',
+		// 'color' => '#999999',
 		'percent' => 0.01,
 		'amount' => 0,
 	),
 	array(
 		'title' => 'Красный',
-		'class' => 'itemRedPlayer',
-		'icon' => 'img/player-car.svg',
-		'color' => '#FF0000',
+		// 'class' => 'itemRedPlayer',
+		// 'icon' => 'img/player-car.svg',
+		// 'color' => '#FF0000',
 		'percent' => 0.05,
 		'amount' => 0,
 	),
@@ -196,7 +196,7 @@ foreach ($playerItems as $key=>$item) {
 			if (count($mazeCells[$y][$x]['items'])==0) {
 				// add item to cell
 				$mazeCells[$y][$x]['items'][]=$key;
-				$mazeCells[$y][$x]['intag']['class'].=' withItem '.$item['class'];
+				$mazeCells[$y][$x]['intag']['class'].=' withItem item'.$key;
 				$mazeCells[$y][$x]['intag']['data-hasitem']=$key;
 				$done = true;
 			}
@@ -212,9 +212,10 @@ $itemsClasses='';
 foreach ($playerItems as $key=>$item) {
 	
 	$itemsList.='
-		<div id="item'.$key.'" class="item '.$item['class'].'"><span class="icon '.$item['class'].'"></span>: <span class="amount">0</span></div>
+		<div id="item'.$key.'" class="item"><span class="icon"></span>: <span class="amount">0</span></div>
 	';
 
+/*
 	$itemsClasses.='
 	.cell.withItem.'.$item['class'].' {
 		background-color: '.$item['color'].';
@@ -228,6 +229,7 @@ foreach ($playerItems as $key=>$item) {
 		mask: url(\''.$item['icon'].'\');
 	}
 	';
+*/
 
 }
 
@@ -253,16 +255,38 @@ foreach ($mazeCells as $curY=>$maze_line) {
 		</div>
 	';
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ?>
 <!doctype html>
 <html>
 <head>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 <div class="topmenu">
 	<a href="?rnd=1">Случайный</A>
+	<a href="#paramBox" id="paramsLink">Параметры</A>
+	<div id="paramBox" class="popup"></div>
 </div>
+
 <div class="leftmenu">
 	<div class="itemslist">
 	<?php
@@ -285,13 +309,11 @@ foreach ($mazeCells as $curY=>$maze_line) {
 <div id="finishMessage" class="popup d-none"><h2>Молодец!</h2></div>
 </div>
 </div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+
 <link media="all" rel="stylesheet" href="css/style-main.css" />
 <link media="all" rel="stylesheet" href="css/maze-default.css" />
-<style>
-<?php
-echo $itemsClasses;
-?>
-</style>
 <script src="js/maze-app.js"></script>
 
 </body>

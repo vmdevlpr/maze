@@ -30,8 +30,8 @@ $(document).ready(function() {
 		yNew = $player.data('y')+yDif;
 		
 		// get new position block
-		$oldCell = $('.maze .cell[data-x='+$player.data('x')+'][data-y='+$player.data('y')+']').first();
-		$cell = $('.maze .cell[data-x='+xNew+'][data-y='+yNew+']').first();
+		$oldCell = $('.maze .mcell[data-x='+$player.data('x')+'][data-y='+$player.data('y')+']').first();
+		$cell = $('.maze .mcell[data-x='+xNew+'][data-y='+yNew+']').first();
 		
 		console.log($player);
 
