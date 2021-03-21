@@ -4,6 +4,10 @@ error_reporting(E_ALL);
 ini_set('display_errors','On');
 
 
+include_once ('include/settings.php');
+
+
+
 /* check security of filenames!!! preg_match can be used*/
 if (!empty($_GET['src'])) {
 	$srcFileMask = '|^[\w\d\.\-]+$|i';
@@ -56,8 +60,16 @@ if (empty($source)) {
 
 
 
-
-
+// load theme if set
+if ( (!empty($_GET['theme'])) and ($styleThemes[$_GET['theme']]) ) {
+	$curTheme = $styleThemes[$_GET['theme']];
+} else {
+	$curTheme = $styleThemes['default'];
+}
+$themesOptions = array();
+foreach ($styleThemes as $theme) {
+	$themesOptions[] = '<option value="'.$theme['slug'].'" '.(($theme['slug'] == $curTheme['slug'])?'selected':'').'>'.$theme['title'].'</option>';
+}
 
 
 
@@ -161,27 +173,6 @@ foreach ($maze as $curY=>$maze_line) {
 }
 
 
-
-$playerItems = array(
-	array(
-		'title' => 'Серый',
-		// 'class' => 'itemGrayPlayer',
-		// 'icon' => 'img/player-car.svg',
-		// 'color' => '#999999',
-		'percent' => 0.01,
-		'amount' => 0,
-	),
-	array(
-		'title' => 'Красный',
-		// 'class' => 'itemRedPlayer',
-		// 'icon' => 'img/player-car.svg',
-		// 'color' => '#FF0000',
-		'percent' => 0.05,
-		'amount' => 0,
-	),
-);
-
-
 foreach ($playerItems as $key=>$item) {
 	$playerItems[$key]['amount'] = round($item['percent']*count($emptyCells));
 	for ( $i=0; $i<$playerItems[$key]['amount']; $i++) {
@@ -283,8 +274,58 @@ foreach ($mazeCells as $curY=>$maze_line) {
 <body>
 <div class="topmenu">
 	<a href="?rnd=1">Случайный</A>
-	<a href="#paramBox" id="paramsLink">Параметры</A>
-	<div id="paramBox" class="popup"></div>
+	<a href="#paramBox" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Параметры</A>
+</div>
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Параетры лабиринта</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		<form action="" method="GET" id="mazeParamsForm">
+			<input type="hidden" name="rnd" value="1">
+			<DIV class="">
+				<label for="xSize" class="form-label">Ширина</label>
+				<div class="row"> 
+					<div class="col-2">
+						<input type="text" name="x" id="xValue" class="w-100">
+					</div>
+					<div class="col-10">
+						<input type="range" class="form-range" min="5" max="30" step="1" id="xSize" data-range-value="xValue">
+					</div>
+				</div>
+			</DIV>
+			<DIV class="">
+				<label for="ySize" class="form-label">Высота</label>
+				<div class="row"> 
+					<div class="col-2">
+						<input type="text" name="y" id="yValue" class="w-100">
+					</div>
+					<div class="col-10">
+						<input type="range" class="form-range" min="5" max="20" step="1" id="ySize" data-range-value="yValue">
+					</div>
+				</div>
+			</DIV>
+			<DIV class="">
+				<label for="ySize" class="form-label">Оформление</label>
+				<select name="theme" class="form-select">
+					<?php
+					
+					echo implode("\n",$themesOptions);
+					
+					?>
+				</select>
+			</DIV>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="submit" form="mazeParamsForm" class="btn btn-primary">Сгенерировать</button>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div class="leftmenu">
@@ -313,8 +354,9 @@ foreach ($mazeCells as $curY=>$maze_line) {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
 <link media="all" rel="stylesheet" href="css/style-main.css" />
-<link media="all" rel="stylesheet" href="css/maze-default.css" />
+<link media="all" rel="stylesheet" href="css/<?php echo $curTheme['cssFile']; ?>" />
 <script src="js/maze-app.js"></script>
+<script src="js/interface.js"></script>
 
 </body>
 </html>

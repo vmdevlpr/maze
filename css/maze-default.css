@@ -13,14 +13,12 @@
 	padding: 0px;
 }
 .mcell.wall {
-	background-color: #9CFF8E;
+	background-color: #AAAAAA;
 	transition-duration: 0.3ms;
-	background-image: url('../img/tree.svg');
 	background-size: contain;
 }
 .mcell.wall.mborder {
 	background-color: #999999;
-	background-color: #097900;
 	background-image: none;
 }
 .mcell.finish {
@@ -36,7 +34,7 @@
 	height: 1rem;
 	overflow: hidden;
 	background-color: #000000;
-	mask: url('../img/player-car.svg');
+	mask: url('../img/player.svg');
 	background-size: contain;
 	/*
 	*/
@@ -71,25 +69,24 @@
 /* itmes */
 .mcell.withItem.item0 {
 	background-color: #999999;
-	mask: url('../img/player-car.svg');
+	mask: url('../img/player.svg');
 }
 .leftmenu #item0 .icon {
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
 	background-color: #999999;
-	mask: url('../img/player-car.svg');
+	mask: url('../img/player.svg');
 }
 
 .mcell.withItem.item1 {
 	background-color: #FF0000;
-	mask: url('../img/player-car.svg');
+	mask: url('../img/player.svg');
 }
 .leftmenu #item1 .icon {
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
 	background-color: #FF0000;
-	mask: url('../img/player-car.svg');
+	mask: url('../img/player.svg');
 }
-	

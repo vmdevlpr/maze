@@ -4,7 +4,7 @@
 .maze .line {
 	clear: both;
 }
-.maze .line .cell {
+.maze .line .mcell {
 	display: block;
 	width: 1rem;
 	height: 1rem;
@@ -12,18 +12,18 @@
 	margin: 0px;
 	padding: 0px;
 }
-.cell.wall {
+.mcell.wall {
 	background-color: #9CFF8E;
 	transition-duration: 0.3ms;
 	background-image: url('../img/tree.svg');
 	background-size: contain;
 }
-.cell.wall.border {
+.mcell.wall.mborder {
 	background-color: #999999;
 	background-color: #097900;
 	background-image: none;
 }
-.cell.finish {
+.mcell.finish {
 	/* background-color: #009900; */
 	background-image: url('../img/exit.svg');
 	background-size: contain;
@@ -65,4 +65,32 @@
   0%   {background-color: #000000;}
   50%  {background-color: #999999;}
   100% {background-color: #000000;}
+}
+
+
+
+
+/* itmes */
+.mcell.withItem.item0 {
+	background-color: #999999;
+	mask: url('../img/player-car.svg');
+}
+.leftmenu #item0 .icon {
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background-color: #999999;
+	mask: url('../img/player-car.svg');
+}
+
+.mcell.withItem.item1 {
+	background-color: #FF0000;
+	mask: url('../img/player-car.svg');
+}
+.leftmenu #item1 .icon {
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background-color: #FF0000;
+	mask: url('../img/player-car.svg');
 }
