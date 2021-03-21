@@ -203,24 +203,8 @@ $itemsClasses='';
 foreach ($playerItems as $key=>$item) {
 	
 	$itemsList.='
-		<div id="item'.$key.'" class="item"><span class="icon"></span>: <span class="amount">0</span></div>
+		<div id="item'.$key.'" class="item" data-itemid="'.$key.'"><span class="icon"></span>: <span class="amount">0</span></div>
 	';
-
-/*
-	$itemsClasses.='
-	.cell.withItem.'.$item['class'].' {
-		background-color: '.$item['color'].';
-		mask: url(\''.$item['icon'].'\');
-	}
-	.leftmenu .icon.'.$item['class'].' {
-		display: inline-block;
-		width: 1rem;
-		height: 1rem;
-		background-color: '.$item['color'].';
-		mask: url(\''.$item['icon'].'\');
-	}
-	';
-*/
 
 }
 

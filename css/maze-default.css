@@ -67,11 +67,11 @@
 
 
 /* itmes */
-.mcell.withItem.item0 {
+.mcell.withItem.item1 {
 	background-color: #999999;
 	mask: url('../img/player.svg');
 }
-.leftmenu #item0 .icon {
+.leftmenu #item1 .icon {
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
@@ -79,11 +79,11 @@
 	mask: url('../img/player.svg');
 }
 
-.mcell.withItem.item1 {
+.mcell.withItem.item2 {
 	background-color: #FF0000;
 	mask: url('../img/player.svg');
 }
-.leftmenu #item1 .icon {
+.leftmenu #item2 .icon {
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;

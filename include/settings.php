@@ -1,7 +1,7 @@
 <?php
 
 $playerItems = array(
-	array(
+	1=>array(
 		'title' => 'Серый',
 		// 'class' => 'itemGrayPlayer',
 		// 'icon' => 'img/player-car.svg',

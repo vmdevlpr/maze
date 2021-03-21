@@ -22,6 +22,25 @@ $(document).ready(function() {
 		});
 		
 	}
+	
+	function launchItem($user,itemId) {
+		
+		if ( $user.data('item'+itemId)>0 ) {
+			
+			$user.data('item'+itemId,$user.data('item'+itemId)-1);
+			
+			switch (itemId) {
+				case 1:
+					$user.addClass('animBlinkGray');
+					$user.data('through_walls',1);
+				break;
+				case 2:
+					$user.addClass('animBlinkRed');
+					$user.data('destroy_walls',1);
+				break;
+			}
+		}
+	}
 		
 	function movePlayer($player, xDif, yDif) {
 		
@@ -139,34 +158,10 @@ $(document).ready(function() {
 					movePlayer($('#player'),1,0);
 				break;
 				case 50:
-					itemId = 1;
-					if ( $('.user').data('item'+itemId)>0 ) {
-						
-						$('.user').data('item'+itemId,$('.user').data('item'+itemId)-1);
-						
-						$('.user').addClass('animBlinkRed');
-						$('.user').data('destroy_walls',1);
-						/*
-						setTimeout(function(){
-							$('.user').removeClass('animBlinkRed');
-						}, 4000);
-						*/
-					}
+					launchItem($('.user'),2);
 				break;
 				case 49:
-					itemId = 0;
-					if ( $('.user').data('item'+itemId)>0 ) {
-						
-						$('.user').data('item'+itemId,$('.user').data('item'+itemId)-1);
-						$('.user').addClass('animBlinkGray');
-						$('.user').data('through_walls',1);
-						/*
-						setTimeout(function(){
-							$('.user').removeClass('animBlinkGray');
-							$('.user').data('through_walls',0);
-						}, 4000);
-						*/
-					}
+					launchItem($('.user'),1);
 				break;
 				default: 
 					myKey = false;
@@ -183,5 +178,12 @@ $(document).ready(function() {
 			event.preventDefault();
 		}
 	});
+	
+	$('.itemslist .item').bind('click',function(){
+		if ($(this).data('itemid')) {
+			launchItem($('.user'),$(this).data('itemid'));
+		}
+	});
+	$('.itemslist .item').css('cursor','pointer');
 	
 });
