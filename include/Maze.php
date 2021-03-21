@@ -30,8 +30,11 @@ class Maze
 	public $startX = 0;
 	public $startY = 1;
 	
-	public $finishX = self::DEFAULT_MAZE_WIDTH-1;
-	public $finishY = self::DEFAULT_MAZE_HEIGHT*2-1;
+	// public $finishX = self::DEFAULT_MAZE_WIDTH-1;
+	public $finishX = null; // will be initialized in constructor
+	
+	// public $finishY = self::DEFAULT_MAZE_HEIGHT*2-1;
+	public $finishY = null; // will be initialized in constructor
 	
     //RandomGen r;
 

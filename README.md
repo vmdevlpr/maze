@@ -1,9 +1,8 @@
 # aMaze
 This is a maze game project.
 
-It's not yet published in the internet, but you can try it localy.
-To run it you need HTTPD server with PHP7.
-It was not tested on former versions of PHP.
+You can try it on http://www.andresd.ru/maze/draw.php
+Code is compatible with PHP5 and later versions
 
 Maze generates a page with a maze.
 It can be generated randomly or read from a text file.

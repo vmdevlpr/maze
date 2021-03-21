@@ -23,6 +23,10 @@ if (!empty($_GET['src'])) {
 }
 
 
+if ( (empty($source)) and (empty($_GET['rnd'])) ) {
+	$_GET['rnd'] = 1;
+}
+
 if (!empty($_GET['rnd'])) {
 	// generate random maze
 	if (isset($_GET['x'])) {
@@ -87,9 +91,9 @@ foreach ($sourceLines as $line) {
 
 // parse array to maze params
 $maze_params = array(
-	'cell' => ['width'=>20,'height'=>20],
-	'start' => ['x'=>false,'y'=>false],
-	'fnish' => ['x'=>false,'y'=>false],
+	'cell' => array('width'=>20,'height'=>20),
+	'start' => array('x'=>false,'y'=>false),
+	'fnish' => array('x'=>false,'y'=>false),
 );
 
 $emptyCells = array();
@@ -126,7 +130,7 @@ foreach ($maze as $curY=>$maze_line) {
 				);
 			break;
 			case 'F':
-				$maze_params['finish']=['x'=>$curX,'y'=>$curY];
+				$maze_params['finish']=array('x'=>$curX,'y'=>$curY);
 				$mazeCells[$curY][$curX]=array(
 					'type' => $maze_cell,
 					'tag' => 'div',
@@ -141,7 +145,7 @@ foreach ($maze as $curY=>$maze_line) {
 			break;
 			case 'S':
 				// mark a start point
-				$maze_params['start']=['x'=>$curX,'y'=>$curY];
+				$maze_params['start']=array('x'=>$curX,'y'=>$curY);
 				$mazeCells[$curY][$curX]=array(
 					'type' => $maze_cell,
 					'tag' => 'div',
@@ -254,6 +258,7 @@ foreach ($mazeCells as $curY=>$maze_line) {
 <head>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
 </head>
 <body>
 <div class="topmenu">
