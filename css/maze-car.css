@@ -12,6 +12,11 @@
 	margin: 0px;
 	padding: 0px;
 }
+.mcell.space {
+	transition-delay: 50ms;
+	transition-duration: 0.5s;
+	background-color: transparent;
+}
 .mcell.wall {
 	background-color: #9CFF8E;
 	transition-duration: 0.3ms;
@@ -30,8 +35,7 @@
 }
 .user {
 	position: absolute;
-	/* transition: all 0.5ms; */
-	transition: top 0.5ms, left 0.5ms;
+	transition: top 0.5ms, left 0.5ms; /* rotation transition fails as it's hard to set the side to rotate :-( */
 	display: none;
 	width: 1rem;
 	height: 1rem;

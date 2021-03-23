@@ -85,10 +85,11 @@ $(document).ready(function() {
 			destroyWalls = false;
 		}
 
-
+		/*
 		if ($oldCell.hasClass('withItem')) {
 			$oldCell.removeClass('withItem');
 		}
+		*/
 		
 		if (
 				( ($cell.data('isfree') >0) || (ignoreWalls==true) || (destroyWalls==true) ) 
@@ -127,6 +128,7 @@ $(document).ready(function() {
 					$player.data('item'+itemKey,amount);
 				}
 				
+				$cell.removeClass('withItem');
 				// console.log($("#item_"+itemKey+" .amount"));
 				
 			}

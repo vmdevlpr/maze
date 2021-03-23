@@ -12,6 +12,11 @@
 	margin: 0px;
 	padding: 0px;
 }
+.mcell.space {
+	transition-delay: 50ms;
+	transition-duration: 0.5s;
+	background-color: transparent;
+}
 .mcell.wall {
 	background-color: #AAAAAA;
 	transition-duration: 0.3ms;
