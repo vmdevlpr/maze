@@ -359,7 +359,7 @@ foreach ($mazeCells as $curY=>$maze_line) {
 	data-through_walls="0"
 	data-destroy_walls="0"
 ></div>
-<div id="finishMessage" class="popup d-none"><h2>Молодец!</h2></div>
+<div id="finishMessage" class=""><h2>Молодец!</h2></div>
 </div>
 </div>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
