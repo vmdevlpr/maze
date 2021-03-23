@@ -52,6 +52,25 @@ $(document).ready(function() {
 		$oldCell = $('.maze .mcell[data-x='+$player.data('x')+'][data-y='+$player.data('y')+']').first();
 		$cell = $('.maze .mcell[data-x='+xNew+'][data-y='+yNew+']').first();
 		
+		
+		// calculate class addition for player icon
+		let classMatix = {
+			'0':{
+				 '0': 'stop',
+				'-1': 'up',
+				 '1': 'down'
+			},
+			'1': {
+				 '0': 'right'
+			},
+			'-1': {
+				 '0': 'left'
+			}
+		}
+		let curMoving = classMatix[xDif][yDif];
+		let addClass = 'moving-'+curMoving;
+		
+		console.log(classMatix[xDif][yDif]);
 		console.log($player);
 
 		/* additional actions */
@@ -83,6 +102,17 @@ $(document).ready(function() {
 		
 			$player.data('x',xNew)
 				.data('y',yNew);
+				
+			// clear old moving class
+			$player.attr('class',$player.attr('class').replace(/\prev-moving-\w+/g, '') );
+			
+			// save prev moving
+			$player.removeClass('moving-'+$player.data('moving'));
+			$player.addClass('prev-moving-'+$player.data('moving'));
+			
+			// add new moving class
+			$player.data('moving',curMoving);
+			$player.addClass(addClass);
 			
 			renewUserPosition($player);
 			
@@ -113,7 +143,7 @@ $(document).ready(function() {
 			}
 			
 			if ($cell.hasClass('finish')) {
-				// alert(' Молодец! ');
+				// alert(' РњРѕР»РѕРґРµС†! ');
 				$("#finishMessage").show();
 				setTimeout(function(){
 					$("#finishMessage").hide();
