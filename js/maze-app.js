@@ -1,4 +1,7 @@
 console.log('init');
+
+var canCaptureKeys = true;
+
 $(document).ready(function() {
 
 	console.log('run');
@@ -168,10 +171,10 @@ $(document).ready(function() {
 		console.log('keyup');
 	});
 	$( document ).bind('keydown',function( event ) {
-		console.log( event.key, event.keyCode);
+		console.log( event.key, event.keyCode, canCaptureKeys);
 		
 		let myKey = true;
-		if (!playerAnimation) {
+		if (!playerAnimation && canCaptureKeys) {
 			switch (event.keyCode) {
 				case 37:
 					// arrow left

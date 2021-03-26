@@ -9,5 +9,13 @@ $(document).ready(function() {
 		}
 	}).trigger('input');
 	
-	$('.modal.hidefocus').on('hidden.bs.modal', function(event) { event.relatedTarget.blur(); });
+	$('.modal.hidefocus').on('hidden.bs.modal', function(event) { 
+		canCaptureKeys = true;
+		event.relatedTarget.blur(); 
+	});
+	$('.modal.hidefocus').on('show.bs.modal', function(event) { 
+		console.log('show modal');
+		canCaptureKeys = false;
+	});
+	
 });
