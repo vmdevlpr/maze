@@ -267,9 +267,9 @@ foreach ($mazeCells as $curY=>$maze_line) {
 <div class="topmenu">
 	<!-- <a href="?rnd=1" class="btn btn-outline-primary btn-sm">Случайный</A> -->
 	<a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#paramBox">Параметры</A>
-	<a href="#helpBox" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#helpBox">Помощь</A>
+	<a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#helpBox">Помощь</A>
 </div>
-<div class="modal fade" id="paramBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade hidefocus" id="paramBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -321,7 +321,7 @@ foreach ($mazeCells as $curY=>$maze_line) {
   </div>
 </div>
 
-<div class="modal fade" id="helpBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade hidefocus" id="helpBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

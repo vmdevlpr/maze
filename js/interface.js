@@ -8,4 +8,6 @@ $(document).ready(function() {
 			$('#'+valueBoxId).val($(this).val());
 		}
 	}).trigger('input');
+	
+	$('.modal.hidefocus').on('hidden.bs.modal', function(event) { event.relatedTarget.blur(); });
 });
