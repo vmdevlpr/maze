@@ -76,6 +76,31 @@ foreach ($styleThemes as $theme) {
 }
 
 
+// load theme if set
+$settingsOptions = array();
+foreach ($playerItems as $itemId=>$item) {
+	if ( 
+			(isset($_GET['i'][$itemId])) and 
+			($_GET['i'][$itemId]>=$item['minPercent']) and
+			($_GET['i'][$itemId]<=$item['maxPercent'])
+		) {
+			
+			$playerItems[$itemId]['percent'] = $item['percent'] = $_GET['i'][$itemId]/100;
+	}
+	
+	$settingsOptions[] = '
+			<div class="row">
+				<div class="col-8">
+					<label for="ySize" class="form-label">'.$item['title'].'</label>
+				</div>
+				<div class="col-4">
+					<input class="form-input w-100" name="i['.$itemId.']" value="'.($item['percent']*100).'">
+				</div>
+			</div>
+	';
+}
+
+
 
 
 
@@ -310,6 +335,15 @@ foreach ($mazeCells as $curY=>$maze_line) {
 					
 					?>
 				</select>
+			</DIV>
+			
+			<DIV class="">
+				<label class="form-label">Предметы</label>
+			<?php
+			
+				echo implode("\n",$settingsOptions);
+			
+			?>
 			</DIV>
         </form>
       </div>
