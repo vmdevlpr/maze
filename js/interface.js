@@ -18,4 +18,8 @@ $(document).ready(function() {
 		canCaptureKeys = false;
 	});
 	
+	setTimeout(function() {
+		$('.loader').remove();
+	}, 300);
+	
 });
