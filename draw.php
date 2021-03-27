@@ -134,9 +134,10 @@ foreach ($maze as $curY=>$maze_line) {
 				$mazeCells[$curY][$curX]=array(
 					'type' => $maze_cell,
 					'tag' => 'div',
+					'asNeighbor' => 'wall',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'mcell wall',
+						'class'=>array('mcell','wall'),
 						'data-isfree'=>0,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -148,9 +149,10 @@ foreach ($maze as $curY=>$maze_line) {
 				$mazeCells[$curY][$curX]=array(
 					'type' => $maze_cell,
 					'tag' => 'div',
+					'asNeighbor' => 'border',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'mcell wall mborder',
+						'class'=>array('mcell','wall','mborder'),
 						'data-isfree'=>0,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -162,9 +164,10 @@ foreach ($maze as $curY=>$maze_line) {
 				$mazeCells[$curY][$curX]=array(
 					'type' => $maze_cell,
 					'tag' => 'div',
+					'asNeighbor' => 'space',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'mcell space finish',
+						'class'=>array('mcell','space','finish'),
 						'data-isfree'=>1,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -177,9 +180,10 @@ foreach ($maze as $curY=>$maze_line) {
 				$mazeCells[$curY][$curX]=array(
 					'type' => $maze_cell,
 					'tag' => 'div',
+					'asNeighbor' => 'space',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'mcell space',
+						'class'=>array('mcell','space'),
 						'data-isfree'=>1,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -190,9 +194,10 @@ foreach ($maze as $curY=>$maze_line) {
 				$mazeCells[$curY][$curX]=array(
 					'type' => $maze_cell,
 					'tag' => 'div',
+					'asNeighbor' => 'space',
 					'items' => array(),
 					'intag' => array(
-						'class'=>'mcell space',
+						'class'=>array('mcell','space'),
 						'data-isfree'=>1,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
@@ -219,12 +224,44 @@ foreach ($playerItems as $key=>$item) {
 			if (count($mazeCells[$y][$x]['items'])==0) {
 				// add item to cell
 				$mazeCells[$y][$x]['items'][]=$key;
-				$mazeCells[$y][$x]['intag']['class'].=' withItem item'.$key;
+				$mazeCells[$y][$x]['intag']['class'][]='withItem';
+				$mazeCells[$y][$x]['intag']['class'][]='item'.$key;
 				$mazeCells[$y][$x]['intag']['data-hasitem']=$key;
 				$done = true;
 			}
 			
 		}
+	}
+}
+
+
+// calc walls classes
+$typeToClass = array(
+	'X' => 'wall',
+	'#' => 'border',
+	' ' => 'space',
+);
+
+function getNeighborClass ($mazeCells,$nX,$nY,$prefix) {
+	if (isset($mazeCells[$nY][$nX])) {
+		return ''.$prefix.'-'.$mazeCells[$nY][$nX]['asNeighbor'].'';
+	} else {
+		return '';
+	}
+}
+
+for ($y=0;$y<count($mazeCells);$y++) {
+	for ($x=0;$x<count($mazeCells[$y]);$x++) {
+		$curCell = $mazeCells[$y][$x];
+		/*
+			
+		*/
+		$nY = $y-1;
+		$nX = $x;
+		$mazeCells[$y][$x]['intag']['class'][]=getNeighborClass($mazeCells,$x,$y-1,'top');
+		$mazeCells[$y][$x]['intag']['class'][]=getNeighborClass($mazeCells,$x,$y+1,'bottom');
+		$mazeCells[$y][$x]['intag']['class'][]=getNeighborClass($mazeCells,$x-1,$y,'left');
+		$mazeCells[$y][$x]['intag']['class'][]=getNeighborClass($mazeCells,$x+1,$y,'right');
 	}
 }
 
@@ -251,9 +288,14 @@ foreach ($mazeCells as $curY=>$maze_line) {
 	foreach ($maze_line as $curX=>$cell) {
 			$intag = array();
 			foreach ($cell['intag'] as $elName => $elValue) {
-				$intag[]=''.$elName.'="'.$elValue.'"';
+				if (is_array($elValue)) {
+					// $elValue = array_filter($elValue);
+					$intag[]=''.$elName.'="'.implode(' ',$elValue).'"';
+				} else {
+					$intag[]=''.$elName.'="'.$elValue.'"';
+				}
 			}
-			$curLine[]='<'.$cell['tag'].' '.implode(' ',$intag).'></'.$cell['tag'].'>';
+			$curLine[]='<'.$cell['tag'].' '.implode(' ',$intag).'><div></div></'.$cell['tag'].'>';
 	}
 	
 	$maze_html[]='
@@ -393,7 +435,7 @@ foreach ($mazeCells as $curY=>$maze_line) {
 	data-through_walls="0"
 	data-destroy_walls="0"
 ></div>
-<div id="finishMessage" class=""><h2>Молодец!</h2></div>
+<div id="finishMessage" style="display:none;"><h2>Молодец!</h2></div>
 </div>
 </div>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">

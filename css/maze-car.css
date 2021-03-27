@@ -13,22 +13,53 @@
 	padding: 0px;
 }
 .mcell.space {
+	background-color: transparent;
+	background-color: #9CFF8E; /*same as a common wall*/
+}
+.mcell.space>div{
 	transition-delay: 50ms;
 	transition-duration: 0.5s;
-	background-color: transparent;
+	width: 100%;
+	height: 100%;
+	background-color: #FFFFFF;
 }
+.mcell.space.top-wall.left-wall>div{
+	border-top-left-radius: 0.2rem;
+}
+.mcell.space.top-wall.right-wall>div{
+	border-top-right-radius: 0.2rem;
+}
+.mcell.space.bottom-wall.left-wall>div{
+	border-bottom-left-radius: 0.2rem;
+}
+.mcell.space.bottom-wall.right-wall>div{
+	border-bottom-right-radius: 0.2rem;
+}
+
+/* walls */
 .mcell.wall {
 	background-color: #9CFF8E;
 	transition-duration: 0.3ms;
 	background-image: url('../img/tree.svg');
 	background-size: contain;
 }
+.mcell.wall.left-space.bottom-space {
+	border-bottom-left-radius: 0.5rem;
+}
+.mcell.wall.right-space.bottom-space {
+	border-bottom-right-radius: 0.5rem;
+}
+.mcell.wall.left-space.top-space {
+	border-top-left-radius: 0.5rem;
+}
+.mcell.wall.right-space.top-space {
+	border-top-right-radius: 0.5rem;
+}
 .mcell.wall.mborder {
-	background-color: #999999;
 	background-color: #097900;
 	background-image: none;
 }
-.mcell.finish {
+.mcell.finish>div {
 	/* background-color: #009900; */
 	background-image: url('../img/exit.svg');
 	background-size: contain;
@@ -99,12 +130,11 @@
 
 
 /* itmes */
-.mcell.withItem.item1 {
-	background-color: #999999;
-	mask: url('../img/canister.svg');
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: 50% 50%;
+.mcell.withItem.item1>div {
+	background-image: url('../img/canister-gray.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50% 50%;
 }
 .leftmenu #item1 .icon {
 	display: inline-block;
@@ -117,12 +147,11 @@
 	mask-position: bottom center;
 }
 
-.mcell.withItem.item2 {
-	background-color: #FF0000;
-	mask: url('../img/canister.svg');
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: 50% 50%;
+.mcell.withItem.item2>div {
+	background-image: url('../img/canister-red.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50% 50%;
 }
 .leftmenu #item2 .icon {
 	display: inline-block;
