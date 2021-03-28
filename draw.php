@@ -507,9 +507,15 @@ foreach ($maze as $line) {
 		<P>Собирая предметы в лабиринте вы можете использовать их для того, чтобы разрушать стены или проходить сквозь них.</P>
 		<P>Для использования собранного предмета, встаньте рядом со стеной, которую хотите разрушить или преодолеть, активируйте предмет в левом меню, двиньтесь в нужную сторону.</P>
       </div>
-      <div class="modal-footer">
+	  <hr>
+	  <div class="row m-2">
+			<div class="col-6 text-center">
+        <A HREF="https://github.com/vmdevlpr/maze" target=_blank class="btn btn-secondary">GitHub</A>
+			</div>
+			<div class="col-6 text-center">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-      </div>
+			</div>
+	  </div>
     </div>
   </div>
 </div>
