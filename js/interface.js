@@ -11,8 +11,11 @@ $(document).ready(function() {
 	
 	$('.modal.hidefocus').on('hidden.bs.modal', function(event) { 
 		canCaptureKeys = true;
-		if (event.relatedTarget) {
-			event.relatedTarget.blur(); 
+		let callButtonId = $(this).data('hidefocus');
+		if (callButtonId) {
+			setTimeout(function () {
+				$('#'+callButtonId).blur();
+			},1);
 		}
 	});
 	$('.modal.hidefocus').on('show.bs.modal', function(event) { 

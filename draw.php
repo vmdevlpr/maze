@@ -398,13 +398,13 @@ foreach ($maze as $line) {
 <body>
 <div class="topmenu">
 	<!-- <a href="?rnd=1" class="btn btn-outline-primary btn-sm">Случайный</A> -->
-	<a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#mazeBox">Лабиринт</A>
-	<a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#paramBox">Параметры</A>
-	<a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#helpBox">Помощь</A>
+	<a href="#" id="mazeBoxButton" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#mazeBox">Лабиринт</A>
+	<a href="#" id="paramBoxButton" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#paramBox">Параметры</A>
+	<a href="#" id="helpBoxButton" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#helpBox">Помощь</A>
 </div>
 
 
-<div class="modal fade hidefocus" id="mazeBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade hidefocus" id="mazeBox" data-hidefocus="mazeBoxButton" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -434,7 +434,7 @@ foreach ($maze as $line) {
 </div>
 
 
-<div class="modal fade hidefocus" id="paramBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade hidefocus" id="paramBox" data-hidefocus="paramBoxButton" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -495,7 +495,7 @@ foreach ($maze as $line) {
   </div>
 </div>
 
-<div class="modal fade hidefocus" id="helpBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade hidefocus" id="helpBox" data-hidefocus="helpBoxButton" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
