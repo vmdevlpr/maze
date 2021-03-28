@@ -22,6 +22,12 @@ if (!empty($_GET['src'])) {
 	}
 }
 
+$sourceIsPosted = false;
+if (isset($_POST['maze'])) {
+	$source = $_POST['maze'];
+	$sourceIsPosted = true;
+}
+
 
 if ( (empty($source)) and (empty($_GET['rnd'])) ) {
 	$_GET['rnd'] = 1;
@@ -65,8 +71,8 @@ if (empty($source)) {
 
 
 // load theme if set
-if ( (!empty($_GET['theme'])) and ($styleThemes[$_GET['theme']]) ) {
-	$curTheme = $styleThemes[$_GET['theme']];
+if ( (!empty($_REQUEST['theme'])) and ($styleThemes[$_REQUEST['theme']]) ) {
+	$curTheme = $styleThemes[$_REQUEST['theme']];
 } else {
 	$curTheme = $styleThemes['default'];
 }
@@ -122,28 +128,31 @@ foreach ($sourceLines as $y=>$line) {
 	$maze[] = $row;
 }
 
+// print_r($maze);
+// die();
 
-foreach ($playerItems as $key=>$item) {
-	$playerItems[$key]['amount'] = round($item['percent']*count($emptyCells));
-	for ( $i=0; $i<$playerItems[$key]['amount']; $i++) {
-		// choose line to put item on
-		$done = false;
-		while (!$done) {
-			// choose a random line 
-			$cellId = rand(0,count($emptyCells)-1);
-			
-			$x = $emptyCells[$cellId]['x'];
-			$y = $emptyCells[$cellId]['y'];
-			if ($maze[$y][$x]==' ') {
-				// add item to cell
-				$maze[$y][$x]=$key;
-				$done = true;
+if (!$sourceIsPosted) {
+	foreach ($playerItems as $key=>$item) {
+		$playerItems[$key]['amount'] = round($item['percent']*count($emptyCells));
+		for ( $i=0; $i<$playerItems[$key]['amount']; $i++) {
+			// choose line to put item on
+			$done = false;
+			while (!$done) {
+				// choose a random line 
+				$cellId = rand(0,count($emptyCells)-1);
+				
+				$x = $emptyCells[$cellId]['x'];
+				$y = $emptyCells[$cellId]['y'];
+				if ($maze[$y][$x]==' ') {
+					// add item to cell
+					$maze[$y][$x]=$key;
+					$done = true;
+				}
+				
 			}
-			
 		}
 	}
 }
-
 
 
 
@@ -308,11 +317,7 @@ function getNeighborClass ($mazeCells,$nX,$nY,$prefix) {
 for ($y=0;$y<count($mazeCells);$y++) {
 	for ($x=0;$x<count($mazeCells[$y]);$x++) {
 		$curCell = $mazeCells[$y][$x];
-		/*
-			
-		*/
-		$nY = $y-1;
-		$nX = $x;
+
 		$mazeCells[$y][$x]['intag']['class'][]=getNeighborClass($mazeCells,$x,$y-1,'top');
 		$mazeCells[$y][$x]['intag']['class'][]=getNeighborClass($mazeCells,$x,$y+1,'bottom');
 		$mazeCells[$y][$x]['intag']['class'][]=getNeighborClass($mazeCells,$x-1,$y,'left');
@@ -360,7 +365,12 @@ foreach ($mazeCells as $curY=>$maze_line) {
 	';
 }
 
-
+// set text variant of a maze
+$maze_txt = '';
+foreach ($maze as $line) {
+	// $maze_txt.=str_replace(' ','&nbsp;',implode('',$line))."\n";
+	$maze_txt.=implode('',$line)."\n";
+}
 
 
 
@@ -388,9 +398,42 @@ foreach ($mazeCells as $curY=>$maze_line) {
 <body>
 <div class="topmenu">
 	<!-- <a href="?rnd=1" class="btn btn-outline-primary btn-sm">Случайный</A> -->
+	<a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#mazeBox">Лабиринт</A>
 	<a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#paramBox">Параметры</A>
 	<a href="#" class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#helpBox">Помощь</A>
 </div>
+
+
+<div class="modal fade hidefocus" id="mazeBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Лабиринт</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+		<div class="row">
+			<div class="col-4">
+				<a href="#" id="copyMaze" class="btn btn-primary btn-sm">Скопировать</a>
+				<a href="#" id="downloadMaze" class="btn btn-primary btn-sm">Скачать</a>
+			</div>
+			<div class="col-8">
+				<form action="?" method="POST" id="mazeInputForm" class="h-100">
+					<input type="hidden" name="theme" value="<?php echo @$_REQUEST['theme']; ?>">
+					<textarea id="mazeText" name="maze" class="w-100 h-100 d-block font-monospace lh-sm" style="overflow:auto; font-size: 0.5rem"><?php echo $maze_txt; ?></textarea>
+				</form>
+			</div>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+        <button type="submit" form="mazeInputForm" class="btn btn-primary">Открыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <div class="modal fade hidefocus" id="paramBox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

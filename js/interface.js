@@ -11,12 +11,26 @@ $(document).ready(function() {
 	
 	$('.modal.hidefocus').on('hidden.bs.modal', function(event) { 
 		canCaptureKeys = true;
-		event.relatedTarget.blur(); 
+		if (event.relatedTarget) {
+			event.relatedTarget.blur(); 
+		}
 	});
 	$('.modal.hidefocus').on('show.bs.modal', function(event) { 
 		console.log('show modal');
 		canCaptureKeys = false;
 	});
+	
+	$('#copyMaze').bind('click', function(event) { 
+		$("textarea#mazeText").select();
+		document.execCommand('copy');
+		console.log($("textarea#mazeText"));
+	});
+	
+	$('#downloadMaze').bind('click', function(event) { 
+		$("#mazeInputForm").attr('action','download.php').attr('target','_blank').submit();
+		$("#mazeInputForm").attr('action','?').attr('target','');
+	});
+	
 	
 	setTimeout(function() {
 		$('.loader').remove();
