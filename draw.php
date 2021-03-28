@@ -171,8 +171,8 @@ $maze_params = array(
 
 $emptyCells = array();
 $mazeCells = array();
-$maze_params['width'] = (count($maze)+1) / 2 - 1;
-$maze_params['height'] = (count($maze[0])+1) / 2 - 1;
+$maze_params['height'] = (count($maze)+1) / 2 - 1;
+$maze_params['width'] = (count($maze[0])+1) / 2 - 1;
 foreach ($maze as $curY=>$maze_line) {
 	foreach ($maze_line as $curX=>$maze_cell) {
 		switch ($maze_cell) {
