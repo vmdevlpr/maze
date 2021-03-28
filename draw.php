@@ -105,14 +105,52 @@ foreach ($playerItems as $itemId=>$item) {
 
 
 // convert source to array
+$emptyCells = array();
 $maze=array();
 $sourceLines = explode("\n",trim($source));
-foreach ($sourceLines as $line) {
+foreach ($sourceLines as $y=>$line) {
 	$line = trim($line);
-	$maze[] = str_split($line);
+	$row = str_split($line);
+	
+	foreach ($row as $x=>$cell) {
+		if ($cell==' ') {
+			$emptyCells[] = array('x'=>$x,'y'=>$y);
+		}
+		
+	}
+	
+	$maze[] = $row;
 }
 
+
+foreach ($playerItems as $key=>$item) {
+	$playerItems[$key]['amount'] = round($item['percent']*count($emptyCells));
+	for ( $i=0; $i<$playerItems[$key]['amount']; $i++) {
+		// choose line to put item on
+		$done = false;
+		while (!$done) {
+			// choose a random line 
+			$cellId = rand(0,count($emptyCells)-1);
+			
+			$x = $emptyCells[$cellId]['x'];
+			$y = $emptyCells[$cellId]['y'];
+			if ($maze[$y][$x]==' ') {
+				// add item to cell
+				$maze[$y][$x]=$key;
+				$done = true;
+			}
+			
+		}
+	}
+}
+
+
+
+
+
+
 // print_r($maze);
+// die();
 
 // parse array to maze params
 $maze_params = array(
@@ -156,6 +194,22 @@ foreach ($maze as $curY=>$maze_line) {
 						'data-isfree'=>0,
 						'data-x'=>$curX,
 						'data-y'=>$curY,
+					),
+				);
+			break;
+			case '1':
+			case '2':
+				$mazeCells[$curY][$curX]=array(
+					'type' => $maze_cell,
+					'tag' => 'div',
+					'asNeighbor' => 'space',
+					'items' => array($maze_cell),
+					'intag' => array(
+						'class'=>array('mcell','space','withItem','item'.$maze_cell),
+						'data-isfree'=>1,
+						'data-x'=>$curX,
+						'data-y'=>$curY,
+						'data-hasitem'=>$maze_cell,
 					),
 				);
 			break;
@@ -210,6 +264,7 @@ foreach ($maze as $curY=>$maze_line) {
 }
 
 
+/*
 foreach ($playerItems as $key=>$item) {
 	$playerItems[$key]['amount'] = round($item['percent']*count($emptyCells));
 	for ( $i=0; $i<$playerItems[$key]['amount']; $i++) {
@@ -233,7 +288,7 @@ foreach ($playerItems as $key=>$item) {
 		}
 	}
 }
-
+*/
 
 // calc walls classes
 $typeToClass = array(
