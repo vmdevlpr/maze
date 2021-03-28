@@ -102,6 +102,17 @@ $(document).ready(function() {
 		
 			if (destroyWalls && $cell.hasClass('wall')) {
 				$cell.removeClass('wall').addClass('space').data('isfree',1);
+				// update neighbours:
+				let cellX = $cell.data('x');
+				let cellY = $cell.data('y');
+				
+				// top
+				// console.log($('.cell[data-x='+cellX+'][data-y='+(cellY-1)+']'));
+				$('.mcell[data-x='+cellX+'][data-y='+(cellY-1)+']').removeClass('bottom-wall').addClass('bottom-space');
+				$('.mcell[data-x='+cellX+'][data-y='+(cellY+1)+']').removeClass('top-wall').addClass('top-space');
+				$('.mcell[data-x='+(cellX-1)+'][data-y='+(cellY)+']').removeClass('right-wall').addClass('right-space');
+				$('.mcell[data-x='+(cellX+1)+'][data-y='+(cellY)+']').removeClass('left-wall').addClass('left-space');
+				
 			}
 		
 			$player.data('x',xNew)
