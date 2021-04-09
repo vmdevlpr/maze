@@ -34,6 +34,13 @@ $(document).ready(function() {
 		$("#mazeInputForm").attr('action','?').attr('target','');
 	});
 	
+	$('#uploadMaze').bind('click', function(event) { 
+		$("#uploadField").click();
+	});
+	$("#uploadField").bind('change', function() {
+		$("#uploadForm").submit();
+	});
+	
 	
 	setTimeout(function() {
 		$('.loader').remove();

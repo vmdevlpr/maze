@@ -23,6 +23,12 @@ if (!empty($_GET['src'])) {
 }
 
 $sourceIsPosted = false;
+
+if (isset($_FILES['mazeFile'])) {
+	$source = file_get_contents($_FILES['mazeFile']['tmp_name']);
+	$sourceIsPosted = true;
+}
+
 if (isset($_POST['maze'])) {
 	$source = $_POST['maze'];
 	$sourceIsPosted = true;
@@ -33,7 +39,7 @@ if ( (empty($source)) and (empty($_GET['rnd'])) ) {
 	$_GET['rnd'] = 1;
 }
 
-if (!empty($_GET['rnd'])) {
+if ( (!empty($_GET['rnd'])) and (empty($source))  ) {
 	// generate random maze
 	if (isset($_GET['x'])) {
 		$rndX = $_GET['x'];
@@ -131,7 +137,11 @@ foreach ($sourceLines as $y=>$line) {
 // print_r($maze);
 // die();
 
+
 if (!$sourceIsPosted) {
+	
+	// place items to the generated maze
+	
 	foreach ($playerItems as $key=>$item) {
 		$playerItems[$key]['amount'] = round($item['percent']*count($emptyCells));
 		for ( $i=0; $i<$playerItems[$key]['amount']; $i++) {
@@ -152,6 +162,7 @@ if (!$sourceIsPosted) {
 			}
 		}
 	}
+
 }
 
 
@@ -413,11 +424,17 @@ foreach ($maze as $line) {
       </div>
       <div class="modal-body">
 		<div class="row">
-			<div class="col-4">
-				<a href="#" id="copyMaze" class="btn btn-primary btn-sm">Скопировать</a>
-				<a href="#" id="downloadMaze" class="btn btn-primary btn-sm">Скачать</a>
+			<div class="col-3">
+				<a href="#" id="copyMaze" class="w-100 btn btn-primary btn-sm mb-2">Скопировать</a>
+				<a href="#" id="downloadMaze" class="w-100 btn btn-primary btn-sm mb-2">Скачать</a>
+				<a href="#" id="uploadMaze" class="w-100 btn btn-primary btn-sm mb-2">Загрузить</a>
+				<div class="d-none">
+					<form action="" method="post" id="uploadForm" enctype="multipart/form-data">
+						<INPUT type="file" name="mazeFile" id="uploadField">
+					</form>
+				</div>
 			</div>
-			<div class="col-8">
+			<div class="col-9">
 				<form action="?" method="POST" id="mazeInputForm" class="h-100">
 					<input type="hidden" name="theme" value="<?php echo @$_REQUEST['theme']; ?>">
 					<textarea id="mazeText" name="maze" class="w-100 h-100 d-block font-monospace lh-sm" style="overflow:auto; font-size: 0.5rem"><?php echo $maze_txt; ?></textarea>

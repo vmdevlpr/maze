@@ -1,0 +1,181 @@
+.maze {
+	position: relative;
+}
+.maze .loader {
+	position: absolute;
+	background-color: #FFFFFF;
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+}
+.maze .loader>div {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -2.5rem;
+	margin-left: -2.5rem;
+	width: 5rem;
+	height: 5rem;
+}
+.maze .line {
+	clear: both;
+}
+.maze .line .mcell {
+	display: block;
+	width: 1rem;
+	height: 1rem;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+.mcell.space {
+	background-color: transparent;
+	background-color: #9CFF8E; /*same as a common wall*/
+}
+.mcell.space>div{
+	transition-delay: 50ms;
+	transition-duration: 0.5s;
+	width: 100%;
+	height: 100%;
+	background-color: #FFFFFF;
+}
+.mcell.space.top-wall.left-wall>div{
+	border-top-left-radius: 0.2rem;
+}
+.mcell.space.top-wall.right-wall>div{
+	border-top-right-radius: 0.2rem;
+}
+.mcell.space.bottom-wall.left-wall>div{
+	border-bottom-left-radius: 0.2rem;
+}
+.mcell.space.bottom-wall.right-wall>div{
+	border-bottom-right-radius: 0.2rem;
+}
+
+/* walls */
+.mcell.wall {
+	background-color: #9CFF8E;
+	transition-duration: 0.3ms;
+	background-image: url('../img/tree.svg');
+	background-size: contain;
+}
+.mcell.wall.left-space.bottom-space {
+	border-bottom-left-radius: 0.5rem;
+}
+.mcell.wall.right-space.bottom-space {
+	border-bottom-right-radius: 0.5rem;
+}
+.mcell.wall.left-space.top-space {
+	border-top-left-radius: 0.5rem;
+}
+.mcell.wall.right-space.top-space {
+	border-top-right-radius: 0.5rem;
+}
+.mcell.wall.mborder {
+	background-color: #097900;
+	background-image: none;
+}
+.mcell.finish>div {
+	/* background-color: #009900; */
+	background-image: url('../img/exit.svg');
+	background-size: contain;
+}
+.user {
+	position: absolute;
+	transition: top 0.5ms, left 0.5ms; /* rotation transition fails as it's hard to set the side to rotate :-( */
+	display: none;
+	width: 1rem;
+	height: 1rem;
+	overflow: hidden;
+	background-color: #000000;
+	/* mask: url('../img/player-car.svg'); */
+	mask: url('../img/car-top.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	mask-position: 50% 50%;
+	background-size: contain;
+
+	transform: rotate(90deg);
+	/*
+	*/
+}
+
+/* user movements */
+.user.moving-down {
+	transform: rotate(180deg);
+}
+.user.moving-up {
+	transform: rotate(0deg);
+}
+.user.prev-moving-up.moving-left {
+	transform: rotate(-90deg);
+}
+.user.moving-left {
+	transform: rotate(270deg);
+}
+.user.moving-right {
+	transform: rotate(90deg);
+}
+
+/* user animation */
+.user.animBlinkRed {
+	animation-name: userBlinkingRed;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+.user.animBlinkGray {
+	animation-name: userBlinkingGray;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+@keyframes userBlinkingRed {
+  0%   {background-color: #000000;}
+  50%  {background-color: #FF0000;}
+  100% {background-color: #000000;}
+}
+
+@keyframes userBlinkingGray {
+  0%   {background-color: #000000;}
+  50%  {background-color: #999999;}
+  100% {background-color: #000000;}
+}
+
+
+
+
+/* itmes */
+.mcell.withItem.item1>div {
+	background-image: url('../img/canister-gray.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50% 50%;
+}
+.leftmenu #item1 .icon {
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background-color: #999999;
+	mask: url('../img/canister.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	mask-position: bottom center;
+}
+
+.mcell.withItem.item2>div {
+	background-image: url('../img/canister-red.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50% 50%;
+}
+.leftmenu #item2 .icon {
+	display: inline-block;
+	width: 1rem;
+	height: 1rem;
+	background-color: #FF0000;
+	mask: url('../img/canister.svg');
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	mask-position: bottom center;
+}
