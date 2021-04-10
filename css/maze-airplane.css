@@ -30,7 +30,7 @@
 }
 .mcell.space {
 	background-color: transparent;
-	background-color: #9CFF8E; /*same as a common wall*/
+	/* background-color: #9CFF8E; */ /*same as a common wall*/
 }
 .mcell.space>div{
 	transition-delay: 50ms;
@@ -54,9 +54,8 @@
 
 /* walls */
 .mcell.wall {
-	background-color: #9CFF8E;
 	transition-duration: 0.3ms;
-	background-image: url('../img/tree.svg');
+	background-image: url('../img/clouds.svg');
 	background-size: contain;
 }
 .mcell.wall.left-space.bottom-space {
@@ -72,7 +71,7 @@
 	border-top-right-radius: 0.5rem;
 }
 .mcell.wall.mborder {
-	background-color: #097900;
+	background-color: #170086;
 	background-image: none;
 }
 .mcell.finish>div {
@@ -88,8 +87,7 @@
 	height: 1rem;
 	overflow: hidden;
 	background-color: #000000;
-	/* mask: url('../img/player-car.svg'); */
-	mask: url('../img/car-top.svg');
+	mask: url('../img/player-airplane.svg');
 	mask-repeat: no-repeat;
 	mask-size: contain;
 	mask-position: 50% 50%;
@@ -147,7 +145,7 @@
 
 /* itmes */
 .mcell.withItem.item1>div {
-	background-image: url('../img/canister-gray.svg');
+	background-image: url('../img/balloon-gray.svg');
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: 50% 50%;
@@ -156,15 +154,14 @@
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
-	background-color: #999999;
-	mask: url('../img/canister.svg');
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: bottom center;
+	background-image: url('../img/balloon-gray.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50% 50%;
 }
 
 .mcell.withItem.item2>div {
-	background-image: url('../img/canister-red.svg');
+	background-image: url('../img/balloon-red.svg');
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: 50% 50%;
@@ -173,9 +170,8 @@
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
-	background-color: #FF0000;
-	mask: url('../img/canister.svg');
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: bottom center;
+	background-image: url('../img/balloon-red.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50% 50%;
 }

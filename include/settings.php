@@ -35,6 +35,11 @@ $styleThemes = array(
 		'slug' => 'car',
 		'cssFile' => 'maze-car.css',
 	),
+	'airplane' => array(
+		'title' => 'Самолет',
+		'slug' => 'airplane',
+		'cssFile' => 'maze-airplane.css',
+	),
 );
 
 
