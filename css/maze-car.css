@@ -87,12 +87,10 @@
 	width: 1rem;
 	height: 1rem;
 	overflow: hidden;
-	background-color: #000000;
-	/* mask: url('../img/player-car.svg'); */
-	mask: url('../img/car-top.svg');
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: 50% 50%;
+	background-image: url('../img/car-top.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50% 50%;
 	background-size: contain;
 
 	transform: rotate(90deg);
@@ -131,15 +129,15 @@
 }
 
 @keyframes userBlinkingRed {
-  0%   {background-color: #000000;}
-  50%  {background-color: #FF0000;}
-  100% {background-color: #000000;}
+  0%   {}
+  50%  {background-image: url('../img/car-top-red.svg');}
+  100% {background-image: url('../img/car-top.svg');}
 }
 
 @keyframes userBlinkingGray {
-  0%   {background-color: #000000;}
-  50%  {background-color: #999999;}
-  100% {background-color: #000000;}
+  0%   {}
+  50%  {background-image: url('../img/car-top-gray.svg');}
+  100% {background-image: url('../img/car-top.svg');}
 }
 
 
@@ -156,11 +154,10 @@
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
-	background-color: #999999;
-	mask: url('../img/canister.svg');
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: bottom center;
+	background-image: url('../img/canister-gray.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: bottom center;
 }
 
 .mcell.withItem.item2>div {
@@ -173,9 +170,8 @@
 	display: inline-block;
 	width: 1rem;
 	height: 1rem;
-	background-color: #FF0000;
-	mask: url('../img/canister.svg');
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: bottom center;
+	background-image: url('../img/canister-red.svg');
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: bottom center;
 }
