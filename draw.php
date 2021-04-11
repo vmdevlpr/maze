@@ -559,7 +559,13 @@ foreach ($maze as $line) {
 	data-y="<?php echo $maze_params['start']['y'];?>"
 	data-through_walls="0"
 	data-destroy_walls="0"
-></div>
+>
+<div id="playerIcon" class="icon"></div>
+<div id="arrMoveUp" class="moveArrow"></div>
+<div id="arrMoveDown" class="moveArrow"></div>
+<div id="arrMoveLeft" class="moveArrow"></div>
+<div id="arrMoveRight" class="moveArrow"></div>
+</div>
 <div id="finishMessage" style="display:none;"><h2>Молодец!</h2></div>
 </div>
 </div>

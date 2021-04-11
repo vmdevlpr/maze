@@ -232,4 +232,19 @@ $(document).ready(function() {
 	});
 	$('.itemslist .item').css('cursor','pointer');
 	
+	$('#arrMoveUp').bind('click',function(){
+		console.log('click: up');
+		movePlayer($('#player'),0,-1);
+	});
+	$('#arrMoveDown').bind('click',function(){
+		console.log('click: down');
+		movePlayer($('#player'),0,1);
+	});
+	$('#arrMoveLeft').bind('click',function(){
+		movePlayer($('#player'),-1,0);
+	});
+	$('#arrMoveRight').bind('click',function(){
+		movePlayer($('#player'),1,0);
+	});
+	
 });

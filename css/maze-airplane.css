@@ -85,14 +85,12 @@
 	display: none;
 	width: 1rem;
 	height: 1rem;
+}
+.user .icon {
+	width: 1rem;
+	height: 1rem;
 	overflow: hidden;
-	/*
-	background-color: #000000;
-	mask: url('../img/player-airplane.svg');
-	mask-repeat: no-repeat;
-	mask-size: contain;
-	mask-position: 50% 50%;
-	*/
+
 	background-image: url('../img/player-airplane.svg');
 	background-repeat: no-repeat;
 	background-size: contain;
@@ -105,30 +103,30 @@
 }
 
 /* user movements */
-.user.moving-down {
+.user.moving-down .icon {
 	transform: rotate(180deg);
 }
-.user.moving-up {
+.user.moving-up .icon {
 	transform: rotate(0deg);
 }
-.user.prev-moving-up.moving-left {
+.user.prev-moving-up.moving-left .icon {
 	transform: rotate(-90deg);
 }
-.user.moving-left {
+.user.moving-left .icon {
 	transform: rotate(270deg);
 }
-.user.moving-right {
+.user.moving-right .icon {
 	transform: rotate(90deg);
 }
 
 /* user animation */
-.user.animBlinkRed {
+.user.animBlinkRed .icon {
 	animation-name: userBlinkingRed;
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
 }
 
-.user.animBlinkGray {
+.user.animBlinkGray .icon {
 	animation-name: userBlinkingGray;
 	animation-duration: 2s;
 	animation-iteration-count: infinite;
@@ -181,4 +179,42 @@
 	background-repeat: no-repeat;
 	background-size: contain;
 	background-position: 50% 50%;
+}
+
+/* arrows for movements */
+.moveArrow {
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 50% 50%;
+	
+	width: 2rem;
+	height: 2rem;
+	
+	cursor: pointer;
+	
+	opacity: 0.2;
+	
+}
+#arrMoveUp {
+	transform: rotate(90deg);
+	background-image: url('../img/airplane-arrow.svg');
+	top: -2.5rem;
+	left: -0.5rem;
+}
+#arrMoveDown {
+	transform: rotate(270deg);
+	background-image: url('../img/airplane-arrow.svg');
+	bottom: -2.5rem;
+	left: -0.5rem;
+}
+#arrMoveRight {
+	transform: rotate(180deg);
+	background-image: url('../img/airplane-arrow.svg');
+	top: -0.5rem;
+	left: 1.5rem;
+}
+#arrMoveLeft {
+	background-image: url('../img/airplane-arrow.svg');
+	top: -0.5rem;
+	right: 1.5rem;
 }

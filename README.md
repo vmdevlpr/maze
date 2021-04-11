@@ -3,7 +3,8 @@
 
 This is a maze game project.
 
-You can try it on http://www.andresd.ru/maze/
+You can try the latest releas on http://www.andresd.ru/maze/
+Some betta versions can be found on http://www.andresd.ru/mazeb/ (now there's a version with better mobile compatibility)
 Code is compatible with PHP5 and later versions
 
 aMaze generates web page with a maze.
